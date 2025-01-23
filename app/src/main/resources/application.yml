@@ -1,0 +1,49 @@
+management:
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+spring:
+  kafka:
+    listener:
+      ack-mode: MANUAL
+    consumer:
+      auto-offset-reset: earliest
+      bootstrap-servers: ${KAFKA_HOST:localhost}:${KAFKA_PORT:9092}
+      group-id: consumer_${spring.application.name}
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      max.poll.records: 500 # Default 500
+      fetch.max.wait.ms: 50 # Default 100ms (tempo de espera)
+      fetch.min.bytes: 1 # Default 1 byte
+      enable.auto.commit: false # Default TRUE
+      properties:
+        spring.json.trusted.packages: "*"
+    producer:
+      acks: -1
+      bootstrap-servers: ${KAFKA_HOST:localhost}:${KAFKA_PORT:9092}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+topics:
+  transactions:
+    requests:
+      name: transaction-requests
+
+dynamodb:
+  tables:
+    transaction:
+      name: transactions
