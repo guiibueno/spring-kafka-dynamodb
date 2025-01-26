@@ -14,9 +14,9 @@ data class Authorization (@get:DynamoDbAttribute(value = "timestamp") var timest
     constructor(code: AuthorizationCode, reason: String) : this(LocalDateTime.now(), code, reason)
 
     companion object AuthorizationReasons {
-        val AUTHORIZATION_REASON_APPROVED = ""
-        val AUTHORIZATION_REASON_REJECTED_TIMEOUT = "TIMEOUT"
-        val AUTHORIZATION_REASON_REJECTED_IDEMPOTENCY = "IDEMPOTENCY_ERROR"
+        const val  AUTHORIZATION_REASON_APPROVED = ""
+        const val  AUTHORIZATION_REASON_REJECTED_TIMEOUT = "TIMEOUT"
+        const val AUTHORIZATION_REASON_REJECTED_IDEMPOTENCY = "IDEMPOTENCY_ERROR"
     }
 }
 
