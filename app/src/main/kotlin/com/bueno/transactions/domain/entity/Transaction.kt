@@ -35,6 +35,6 @@ class Transaction(@get:DynamoDbPartitionKey
 }
 
 enum class TransactionType {
-    CREDITO,
-    DEBITO
+    CREDIT,
+    DEBIT
 }

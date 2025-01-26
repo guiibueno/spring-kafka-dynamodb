@@ -128,7 +128,7 @@ class MicrometerMetricsOutputPortTest {
         val transaction = Transaction(
             id = UUID.randomUUID(),
             accountId = UUID.randomUUID(),
-            type = TransactionType.DEBITO,
+            type = TransactionType.DEBIT,
             value = BigDecimal.TEN,
             description = "Test",
             authorization = Authorization(

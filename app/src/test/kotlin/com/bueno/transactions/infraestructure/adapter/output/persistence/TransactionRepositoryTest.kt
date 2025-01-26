@@ -108,7 +108,7 @@ class TransactionRepositoryTest {
     private val transactionEntity = Transaction(
         id = UUID.randomUUID(),
         accountId = UUID.randomUUID(),
-        type = TransactionType.DEBITO,
+        type = TransactionType.DEBIT,
         value = BigDecimal.TEN,
         description = "Test",
         authorization = Authorization(
@@ -129,7 +129,7 @@ class TransactionRepositoryTest {
         val transaction = Transaction(
             id = transactionId,
             accountId = UUID.randomUUID(),
-            type = TransactionType.DEBITO,
+            type = TransactionType.DEBIT,
             value = BigDecimal.TEN,
             description = "Test",
             authorization = authorization
