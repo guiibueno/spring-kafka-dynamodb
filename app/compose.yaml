@@ -32,4 +32,18 @@ services:
       - 'KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT'
       - 'KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT'
       - 'KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1'
-      - 'KAFKA_CREATE_TOPICS=transaction-requests:1:1'
+      - 'KAFKA_CREATE_TOPICS=transaction-requests:2:1'
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    depends_on:
+      - kafka
+      - zookeeper
+    ports:
+      - "8282:8080"
+    restart: always
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local-kafka
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:59092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:22181
